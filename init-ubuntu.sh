@@ -33,6 +33,7 @@ function install_snap_packages {
     asRoot snap install chromium
     asRoot snap install bitwarden
     asRoot snap install telegram-desktop
+    asRoot snap install dbeaver-ce
     asRoot snap install snap-store
 }
 
@@ -48,7 +49,8 @@ function install_php {
     asRoot apt install software-properties-common -y
     asRoot add-apt-repository ppa:ondrej/php -y
     update_apt
-    asRoot apt install php-cli php-xml php-zip php-gd php-soap -y
+    asRoot apt install php-cli -y
+    asRoot apt install php-xml php-zip php-gd php-soap php-curl php-mbstring php-zip -y
 }
 
 function install_composer {
@@ -80,12 +82,6 @@ function install_docker_compose {
     show_message "Install docker compose"
     asRoot curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     asRoot chmod +x /usr/local/bin/docker-compose
-}
-
-function install_zsh {
-    show_message "Install zsh"
-    asRoot apt install zsh -y
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 
